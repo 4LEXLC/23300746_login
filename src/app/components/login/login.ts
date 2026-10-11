@@ -15,6 +15,7 @@ export class Login {
   private readonly router = inject(Router);
   readonly errorMessage = signal('');
 
+  // Envía los datos al backend y, si son correctos, guarda el token y va a home.
   login(user: Parameters<AuthService['login']>[0]): void {
     this.errorMessage.set('');
     this.authService.login(user).subscribe({
@@ -22,6 +23,7 @@ export class Login {
         this.authService.saveToken(response.token, response.role, response.name);
         void this.router.navigate(['/home']);
       },
+      // Muestra un mensaje según el tipo de error.
       error: (error) => {
         console.error('Error de autenticacion:', error);
         this.errorMessage.set(error.status === 401
@@ -31,11 +33,13 @@ export class Login {
     });
   }
 
+  // Datos que el usuario escribe en el formulario.
   credentials: Credentials = {
     email: '',
     password: '',
   };
 
+  // Se ejecuta al enviar el formulario.
   onSubmit(): void {
   this.login(this.credentials);
   }
