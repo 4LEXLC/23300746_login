@@ -1,0 +1,67 @@
+<div class="auth-page">
+  <form class="auth-box" #loginForm="ngForm" (ngSubmit)="loginForm.valid ? onSubmit() : null">
+    <div class="card">
+      <div class="avatar">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="22" r="11" />
+          <path d="M11 54a21 21 0 0 1 42 0z" />
+        </svg>
+      </div>
+
+      <div class="field">
+        <span class="field-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="7.5" r="4" />
+            <path d="M4.5 21v-2.5a7.5 7.5 0 0 1 15 0V21z" />
+          </svg>
+        </span>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="credentials.email"
+          #email="ngModel"
+          email
+          placeholder="Correo"
+          aria-label="Correo"
+          autocomplete="email"
+          required
+        />
+      </div>
+      @if (email.invalid && (email.touched || loginForm.submitted)) {
+        <p class="msg-error" role="alert">
+          {{ email.errors?.['required'] ? 'El correo es obligatorio' : 'Ingresa un correo válido' }}
+        </p>
+      }
+
+      <div class="field">
+        <span class="field-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10h.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2zm2 0h5V7.5a2.5 2.5 0 0 0-5 0zm2.5 3.2a1.4 1.4 0 0 0-.7 2.6V18h1.4v-2.2a1.4 1.4 0 0 0-.7-2.6z"
+            />
+          </svg>
+        </span>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="credentials.password"
+          #password="ngModel"
+          placeholder="Contraseña"
+          aria-label="Contraseña"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+      @if (password.invalid && (password.touched || loginForm.submitted)) {
+        <p class="msg-error" role="alert">La contraseña es obligatoria</p>
+      }
+
+    <button class="submit-btn" type="submit">ENTRAR</button>
+    @if (errorMessage()) {
+      <p class="msg-error" role="alert">{{ errorMessage() }}</p>
+    }
+
+    </div>
+  </form>
+</div>

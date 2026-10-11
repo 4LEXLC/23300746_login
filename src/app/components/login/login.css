@@ -1,0 +1,193 @@
+/* Estilos compartidos por login y crear cuenta */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+:host {
+  display: block;
+}
+
+/* Fondo */
+.auth-page {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  display: grid;
+  place-items: center;
+  padding: 110px 20px 40px;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+
+  /* Paleta */
+  --azul-oscuro: #0b3d91;
+  --azul: #1a5fd0;
+  --azul-suave: #dbe8fb;
+  --azul-muy-claro: #f1f6fe;
+  --blanco: #ffffff;
+
+  background:
+    radial-gradient(circle at 0% 0%, var(--blanco) 0%, transparent 40%),
+    radial-gradient(circle at 100% 80%, #a9cbf7 0%, transparent 55%),
+    linear-gradient(135deg, #eef5ff 0%, #d6e6fc 55%, #bcd6f8 100%);
+}
+
+.auth-page *,
+.auth-page *::before,
+.auth-page *::after {
+  box-sizing: border-box;
+}
+
+/* Contenedor */
+.auth-box {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tarjeta */
+.card {
+  position: relative;
+  width: 100%;
+  padding: 120px 46px 54px;
+  border-radius: 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 45px rgba(26, 95, 208, 0.15);
+}
+
+/* icono de usuario */
+.avatar {
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  background: var(--azul);
+  display: grid;
+  place-items: center;
+}
+
+.avatar svg {
+  width: 76px;
+  height: 76px;
+  fill: none;
+  stroke: var(--blanco);
+  stroke-width: 2.5;
+}
+
+/* Campos */
+.field {
+  display: flex;
+  height: 58px;
+  margin-bottom: 16px;
+  border: 1px solid var(--azul-suave);
+  transition: border-color 0.2s;
+}
+
+.field:focus-within {
+  border-color: var(--azul);
+}
+
+.field-icon {
+  flex: 0 0 58px;
+  display: grid;
+  place-items: center;
+  background: var(--azul-suave);
+}
+
+.field-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--azul);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 18px;
+  border: none;
+  outline: none;
+  background: var(--azul-muy-claro);
+  color: var(--azul-oscuro);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  transition: background 0.2s;
+}
+
+.field input::placeholder {
+  color: rgba(11, 61, 145, 0.6);
+}
+
+.field input:focus {
+  background: var(--blanco);
+}
+
+/* Botón */
+.submit-btn {
+  width: calc(100% - 92px);
+  height: 60px;
+  border: none;
+  border-radius: 0 0 30px 30px;
+  background: linear-gradient(to bottom, #164fb0 0%, var(--azul) 40%);
+  color: var(--blanco);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.1s;
+  display: block;
+  margin: 20px auto;
+}
+
+.submit-btn:hover {
+  filter: brightness(1.1);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 100px 24px 40px;
+    border-radius: 30px;
+  }
+
+  .avatar {
+    top: -60px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar svg {
+    width: 62px;
+    height: 62px;
+  }
+
+  .submit-btn {
+    width: calc(100% - 48px);
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Mensajes de error */
+.msg-error {
+  margin: -8px 0 12px;
+  color: #c62828;
+  font-size: 0.85rem;
+  text-align: center;
+}
